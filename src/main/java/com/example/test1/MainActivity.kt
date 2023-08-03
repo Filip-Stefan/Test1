@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,26 +35,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("iOs", "nimic")
+                    List()
                 }
             }
         }
     }
 }
 
-val names = arrayOf<String>("cichicean", "bruzli", "meiuedar")
-val list = arrayOf<ProfileList>(
-    ProfileList("cineva", R.drawable.profile1),
-    ProfileList("altcineva", R.drawable.profile2),
-    ProfileList("un om", R.drawable.profile3)
-)
+
 
 @Composable
-fun Greeting(name: String, other: String, modifier: Modifier = Modifier) {
-    Row {
+fun List() {
+    Column(modifier = Modifier
+        .padding(20.dp)) {
+        Text(text = "Freaks List", modifier = Modifier.padding(vertical = 20.dp), fontFamily = nunitoFontFamily, color = Color(0xFF6C717F) )
         Column(
             modifier = Modifier
-                .padding(20.dp)
+//                .padding(20.dp)
                 .border(
                     width = 1.dp,
                     color = Color(0xFF6C717F),
@@ -64,9 +62,9 @@ fun Greeting(name: String, other: String, modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.Start
 
         ) {
-            list.forEachIndexed { index: Int, name: ProfileList ->
+            defaultFreaksList().forEachIndexed { index: Int, name: Freak ->
                 FreaksItem(name = name.name, resId = name.resourceId)
-                if (index < names.count() - 1) {
+                if (index < defaultFreaksList().count() - 1) {
                     Spacer(
                         modifier = Modifier
                             .height(0.5.dp)
@@ -84,9 +82,9 @@ fun Greeting(name: String, other: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ListPreview() {
     Test1Theme {
-        Greeting("Android", "Altceva")
+        List()
     }
 
 }
